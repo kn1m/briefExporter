@@ -1,0 +1,8 @@
+{
+  "notes_retrieve_url" : "http://localhost/notes",
+  "notes_send_url" : "http://localhost/notes",
+  "library_check_url" : "http://localhost/lib",
+  "library_sync_url": "http://localhost/libsync",
+  "scan_folder": "/home/pk/brief",
+  "scan_mount_path_script": "/home/pk/projects/go/src/brief/briefExporter/scripts/devices.sh"
+}
