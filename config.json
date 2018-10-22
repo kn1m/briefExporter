@@ -1,8 +1,9 @@
 {
-  "notes_retrieve_url" : "http://localhost/notes",
-  "notes_send_url" : "http://localhost/notes",
-  "library_check_url" : "http://localhost/lib",
-  "library_sync_url": "http://localhost/libsync",
+  "notes_retrieve_url" : "http://localhost/api/notes",
+  "notes_send_url" : "http://localhost/api/notes",
+  "library_check_url" : "http://localhost/api/lib",
+  "library_sync_url": "http://localhost/api/libsync",
+  "token_retrieve_url" : "http://localhost/api/token",
   "scan_folder": "/home/pk/brief",
-  "scan_mount_path_script": "/home/pk/projects/go/src/brief/briefExporter/scripts/devices.sh"
+  "scan_mount_path_script": "/home/pk/projects/go/src/briefExporter/scripts/devices.sh"
 }

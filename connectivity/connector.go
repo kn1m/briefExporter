@@ -5,10 +5,11 @@ import (
 	"briefExporter/common"
 	"log"
 	"os/exec"
+	"briefExporter/configuration"
 )
 
 type Connector interface {
-	GetNotesFromDevice(serialNumber string, config *common.Config) (string, error)
+	GetNotesFromDevice(serialNumber string, config *configuration.Config) (string, error)
 }
 
 type DeviceClassifier interface {
