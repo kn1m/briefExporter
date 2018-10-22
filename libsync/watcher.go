@@ -4,7 +4,7 @@ import (
 	"os"
 	"log"
 	"io/ioutil"
-	"brief/briefExporter/common"
+	"briefExporter/common"
 )
 
 type Directory struct {

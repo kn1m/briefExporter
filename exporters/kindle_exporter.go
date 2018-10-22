@@ -6,7 +6,7 @@ import (
 	"regexp"
 	"strconv"
 	"strings"
-	"brief/briefExporter/common"
+	"briefExporter/common"
 )
 
 const (

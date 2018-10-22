@@ -2,7 +2,7 @@ package connectivity
 
 import (
 	"github.com/gotmc/libusb"
-	"brief/briefExporter/common"
+	"briefExporter/common"
 	"log"
 	"os/exec"
 )

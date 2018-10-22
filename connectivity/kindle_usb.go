@@ -2,7 +2,7 @@ package connectivity
 
 import (
 	"log"
-	"brief/briefExporter/common"
+	"briefExporter/common"
 )
 
 const (

@@ -7,12 +7,12 @@ import (
 	"os"
 	"fmt"
 	"strings"
-	"brief/briefExporter/exporters"
-	"brief/briefExporter/common"
-	"brief/briefExporter/connectivity"
-	"brief/briefExporter/libsync"
-	"brief/briefExporter/ui"
-	"brief/briefExporter/net"
+	"briefExporter/exporters"
+	"briefExporter/common"
+	"briefExporter/connectivity"
+	"briefExporter/libsync"
+	"briefExporter/ui"
+	"briefExporter/net"
 )
 
 func main() {

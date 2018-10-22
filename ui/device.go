@@ -3,7 +3,7 @@ package ui
 import (
 	"bufio"
 	"fmt"
-	"brief/briefExporter/common"
+	"briefExporter/common"
 )
 
 type Device struct {

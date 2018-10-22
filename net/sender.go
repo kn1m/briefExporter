@@ -4,12 +4,12 @@ import (
 	"net/http"
 	"bytes"
 	"io/ioutil"
-	"brief/briefExporter/common"
+	"briefExporter/common"
 	"time"
 	"log"
 	"encoding/json"
 	"io"
-	"brief/briefExporter/ui"
+	"briefExporter/ui"
 )
 
 type HistoryRecord struct {
