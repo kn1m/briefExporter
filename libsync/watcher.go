@@ -1,16 +1,16 @@
 package libsync
 
 import (
-	"os"
-	"log"
-	"io/ioutil"
 	"briefExporter/common"
+	"io/ioutil"
+	"log"
+	"os"
 )
 
 type Directory struct {
-	Path string
+	Path           string
 	SubDirectories []*Directory
-	Files []os.FileInfo
+	Files          []os.FileInfo
 }
 
 func CheckPath(currentDir *Directory) {

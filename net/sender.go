@@ -1,24 +1,24 @@
 package net
 
 import (
-	"net/http"
-	"bytes"
-	"io/ioutil"
 	"briefExporter/common"
-	"time"
-	"log"
+	"briefExporter/ui"
+	"bytes"
 	"encoding/json"
 	"io"
-	"briefExporter/ui"
+	"io/ioutil"
+	"log"
+	"net/http"
+	"time"
 )
 
 type HistoryRecord struct {
-	SerialNumber string `json:"serial_number"`
-	Checksum [16]byte   `json:"checksum"`
-	CreatedOn time.Time `json:"created_on"`
+	SerialNumber string    `json:"serial_number"`
+	Checksum     [16]byte  `json:"checksum"`
+	CreatedOn    time.Time `json:"created_on"`
 }
 
-func GetPreviousHistoryRecord(serial string, config *common.Config) (*HistoryRecord, error)  {
+func GetPreviousHistoryRecord(serial string, config *common.Config) (*HistoryRecord, error) {
 	resp, err := executeRequest(config.NotesRetrieveUrl, "GET", nil, nil)
 
 	var historyRecord *HistoryRecord

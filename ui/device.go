@@ -1,15 +1,15 @@
 package ui
 
 import (
+	"briefExporter/common"
 	"bufio"
 	"fmt"
-	"briefExporter/common"
 )
 
 type Device struct {
 	Manufacturer string
-	Model string
-	Classifier string
+	Model        string
+	Classifier   string
 }
 
 func GetDeviceToConnect(config *common.Config, reader *bufio.Reader) *Device {
@@ -22,7 +22,7 @@ func GetDeviceToConnect(config *common.Config, reader *bufio.Reader) *Device {
 	fmt.Print("Enter model classifier: ")
 	classifier, _ := reader.ReadString('\n')
 
-	device := &Device { Manufacturer: manufacturer, Model: model, Classifier: classifier }
+	device := &Device{Manufacturer: manufacturer, Model: model, Classifier: classifier}
 
 	return device
 }

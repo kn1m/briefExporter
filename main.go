@@ -1,18 +1,18 @@
 package main
 
 import (
-	"runtime"
-	"log"
-	"flag"
-	"os"
-	"fmt"
-	"strings"
-	"briefExporter/exporters"
 	"briefExporter/common"
 	"briefExporter/connectivity"
+	"briefExporter/exporters"
 	"briefExporter/libsync"
-	"briefExporter/ui"
 	"briefExporter/net"
+	"briefExporter/ui"
+	"flag"
+	"fmt"
+	"log"
+	"os"
+	"runtime"
+	"strings"
 )
 
 func main() {
@@ -78,7 +78,7 @@ func main() {
 			notes[i].FirstLocation, notes[i].SecondLocation, notes[i].NoteTitle, notes[i].NoteText, notes[i].CreatedOn)
 	}
 
-	libDir := &libsync.Directory{ Path:mountPath }
+	libDir := &libsync.Directory{Path: mountPath}
 	libsync.CheckPath(libDir)
 	libDir.PrintStructure(nil)
 
@@ -90,4 +90,3 @@ func main() {
 		log.Println(mem.HeapSys)
 	}
 }
-

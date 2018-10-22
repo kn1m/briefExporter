@@ -1,18 +1,18 @@
 package connectivity
 
 import (
-	"log"
 	"briefExporter/common"
+	"log"
 )
 
 const (
 	DefaultKindleNotesFilePath = "/documents/My Clippings.txt"
 
 	manufacturerName = "Amazon"
-	productName = "Amazon Kindle"
+	productName      = "Amazon Kindle"
 )
 
-type KindleUsbConnector struct {}
+type KindleUsbConnector struct{}
 
 func (c *KindleUsbConnector) GetNotesFromDevice(serialNumber string, config *common.Config) (string, error) {
 	log.Println(serialNumber)

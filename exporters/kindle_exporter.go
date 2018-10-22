@@ -1,12 +1,12 @@
 package exporters
 
 import (
+	"briefExporter/common"
 	"errors"
 	"log"
 	"regexp"
 	"strconv"
 	"strings"
-	"briefExporter/common"
 )
 
 const (
@@ -23,7 +23,7 @@ const (
 )
 
 type (
-	KindleExporter struct {}
+	KindleExporter struct{}
 
 	noteData struct {
 		titleNoteData map[string]string

@@ -1,11 +1,11 @@
 package connectivity
 
 import (
-	"github.com/gotmc/libusb"
 	"briefExporter/common"
+	"briefExporter/configuration"
+	"github.com/gotmc/libusb"
 	"log"
 	"os/exec"
-	"briefExporter/configuration"
 )
 
 type Connector interface {
@@ -34,7 +34,7 @@ func getConnectedDevices() (*libusb.Context, []*libusb.Device, error) {
 }
 
 func verifyDeviceManufacturerAndProduct(manufacturerName string, productName string,
-										handle *libusb.DeviceHandle, descriptor *libusb.DeviceDescriptor) bool {
+	handle *libusb.DeviceHandle, descriptor *libusb.DeviceDescriptor) bool {
 	manufacturerConfirmed := false
 	productConfirmed := false
 
@@ -50,7 +50,7 @@ func verifyDeviceManufacturerAndProduct(manufacturerName string, productName str
 	return manufacturerConfirmed && productConfirmed
 }
 
-func GetAllCompatibleDevicesSerials(manufacturerName string, productName string) ([]*string, error){
+func GetAllCompatibleDevicesSerials(manufacturerName string, productName string) ([]*string, error) {
 	var serials []*string
 
 	ctx, devices, err := getConnectedDevices()
@@ -118,7 +118,6 @@ func verifyDevice(manufacturerName string, productName string, serialNumberToChe
 	}
 	return false
 }
-
 
 func getDeviceMountPath(serialNumber string, config *common.Config) (string, error) {
 	mountPath, err := exec.Command("sh", config.ScanMountPathScript).Output()

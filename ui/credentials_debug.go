@@ -4,8 +4,8 @@ package ui
 
 import (
 	"bufio"
-	"os"
 	"fmt"
+	"os"
 	"strings"
 )
 
