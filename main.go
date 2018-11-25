@@ -13,6 +13,7 @@ import (
 	"os"
 	"runtime"
 	"strings"
+	"sync"
 )
 
 func main() {
@@ -65,12 +66,20 @@ func main() {
 	fmt.Println("Enter desired serial:")
 	desiredSerial, _ := reader.ReadString('\n')
 
-	mountPath, err := kindleUsb.GetNotesFromDevice(strings.TrimRight(desiredSerial, "\n"), config)
+	var wg sync.WaitGroup
+	wg.Add(2)
 
-	var matcher exporters.KindleExporter
+	var notes []*exporters.NoteRecord
+	var mountPath string
 
-	notes, err := matcher.GetNotes(mountPath + connectivity.DefaultKindleNotesFilePath)
-	common.Check(err)
+	go func() {
+		mountPath, err := kindleUsb.GetNotesFromDevice(strings.TrimRight(desiredSerial, "\n"), config)
+
+		var matcher exporters.KindleExporter
+
+		notes, err = matcher.GetNotes(mountPath + connectivity.DefaultKindleNotesFilePath)
+		common.Check(err)
+	}()
 
 	for i := range notes {
 		log.Printf("\n%d: %s %s %+v p: %d-%d l:%d-%d :: %s :: %s %s", i, notes[i].BookTitle,
