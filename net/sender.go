@@ -2,77 +2,24 @@ package net
 
 import (
 	"briefExporter/common"
-	"briefExporter/ui"
-	"bytes"
-	"encoding/json"
 	"io"
-	"io/ioutil"
 	"log"
 	"net/http"
-	"time"
 )
 
-type HistoryRecord struct {
-	SerialNumber string    `json:"serial_number"`
-	Checksum     [16]byte  `json:"checksum"`
-	CreatedOn    time.Time `json:"created_on"`
-}
-
-func GetPreviousHistoryRecord(serial string, config *common.Config) (*HistoryRecord, error) {
-	resp, err := executeRequest(config.NotesRetrieveUrl, "GET", nil, nil)
-
-	var historyRecord *HistoryRecord
-
-	body, _ := ioutil.ReadAll(resp.Body)
-	logResponse(resp, body)
-
-	err = json.Unmarshal(body, &historyRecord)
-
-	return historyRecord, err
-}
-
-func SendNotesToServer(notes *[]byte, config *common.Config) {
-	headers := make(map[string]string)
-	headers["Set-Type"] = "All"
-	headers["Content-Type"] = "application/json"
-
-	resp, err := executeRequest(config.NotesSendUrl, "POST", bytes.NewBuffer(*notes), headers)
-	common.Check(err)
-
-	body, _ := ioutil.ReadAll(resp.Body)
-
-	logResponse(resp, body)
-}
-
-func CheckDeviceAvailability(device *ui.Device, config *common.Config) bool {
-	headers := make(map[string]string)
-	headers["Content-Type"] = "application/json"
-
-	deviceJson, _ := json.Marshal(*device)
-
-	resp, err := executeRequest(config.DeviceAvailabilityUrl, "GET", bytes.NewBuffer(deviceJson), headers)
-	common.Check(err)
-
-	if resp.StatusCode == 200 {
-		return true
-	}
-
-	return false
-}
-
 func logResponse(response *http.Response, body []byte) {
-	log.Println("response status:", response.Status)
-	log.Println("response headers:", response.Header)
-	log.Println("response body:", string(body))
+	log.Println("Response status: ", response.Status)
+	log.Println("Response headers: ", response.Header)
+	log.Println("Response body: ", string(body))
 }
 
 func executeRequest(url string, method string, bodyReader io.Reader, headers map[string]string) (*http.Response, error) {
-	log.Println("sending to: ", url)
+	log.Println("Sending to: ", url)
 
 	req, err := http.NewRequest(method, url, bodyReader)
 	common.Check(err)
-	for k, v := range headers {
-		req.Header.Set(k, v)
+	for key, value := range headers {
+		req.Header.Set(key, value)
 	}
 
 	client := &http.Client{}

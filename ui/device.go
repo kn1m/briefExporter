@@ -1,7 +1,7 @@
 package ui
 
 import (
-	"briefExporter/common"
+	"briefExporter/configuration"
 	"bufio"
 	"fmt"
 )
@@ -12,7 +12,7 @@ type Device struct {
 	Classifier   string
 }
 
-func GetDeviceToConnect(config *common.Config, reader *bufio.Reader) *Device {
+func GetDeviceToConnect(config *configuration.Config, reader *bufio.Reader) *Device {
 	fmt.Print("Enter manufacturer: ")
 	manufacturer, _ := reader.ReadString('\n')
 

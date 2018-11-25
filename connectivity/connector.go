@@ -1,7 +1,6 @@
 package connectivity
 
 import (
-	"briefExporter/common"
 	"briefExporter/configuration"
 	"github.com/gotmc/libusb"
 	"log"
@@ -119,7 +118,7 @@ func verifyDevice(manufacturerName string, productName string, serialNumberToChe
 	return false
 }
 
-func getDeviceMountPath(serialNumber string, config *common.Config) (string, error) {
+func getDeviceMountPath(serialNumber string, config *configuration.Config) (string, error) {
 	mountPath, err := exec.Command("sh", config.ScanMountPathScript).Output()
 	return string(mountPath), err
 }

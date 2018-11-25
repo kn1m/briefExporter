@@ -1,7 +1,7 @@
 package connectivity
 
 import (
-	"briefExporter/common"
+	"briefExporter/configuration"
 	"log"
 )
 
@@ -14,7 +14,7 @@ const (
 
 type KindleUsbConnector struct{}
 
-func (c *KindleUsbConnector) GetNotesFromDevice(serialNumber string, config *common.Config) (string, error) {
+func (c *KindleUsbConnector) GetNotesFromDevice(serialNumber string, config *configuration.Config) (string, error) {
 	log.Println(serialNumber)
 	deviceVerified := verifyDevice(manufacturerName, productName, serialNumber)
 	if deviceVerified {
