@@ -3,9 +3,11 @@ package net
 import (
 	"briefExporter/common"
 	"briefExporter/configuration"
-	"errors"
-	"net/http"
+	"encoding/json"
+	"io/ioutil"
 )
+
+const authorizationHeaderName = "Authorization"
 
 type User struct {
 	Email    string `json:"email"`
@@ -13,20 +15,32 @@ type User struct {
 }
 
 type TokenResponse struct {
+	Token string `json:"token"`
 }
 
-func GetToken(configuration *configuration.Config, user *User) (string, error) {
+func GetToken(configuration *configuration.Config, user *User) (*string, error) {
 
-	tokenData, err := executeRequest(configuration.TokenRetrieveUrl, "POST", nil, nil)
+	resp, err := executeRequest(configuration.TokenRetrieveUrl, "POST", nil, nil)
 	common.Check(err)
 
-	return tokenData, nil
+	var tokenResponse *TokenResponse
+
+	body, _ := ioutil.ReadAll(resp.Body)
+	logResponse(resp, body)
+
+	err = json.Unmarshal(body, &tokenResponse)
+
+	return &tokenResponse.Token, err
 }
 
-func ApplyAuthorization(request *http.Request) error {
-	if request == nil {
-		return errors.New("No request provided!")
+func GetAuthorizationHeaders(initialHeaders map[string]string, token *string) map[string]string {
+	if initialHeaders != nil {
+		initialHeaders[authorizationHeaderName] = *token
+
+		return initialHeaders
 	}
 
-	return nil
+	return map[string]string{
+		authorizationHeaderName: *token,
+	}
 }
