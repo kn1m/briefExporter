@@ -7,6 +7,7 @@ import (
 	"bytes"
 	"encoding/json"
 	"io/ioutil"
+	"net/http"
 	"time"
 )
 
@@ -45,16 +46,39 @@ func SendNotesToServer(notes *[]byte, config *configuration.Config, token *strin
 	logResponse(resp, body)
 }
 
-func CheckDeviceAvailability(device *ui.Device, config *configuration.Config) bool {
+func CheckDeviceAvailability(device *ui.Device, config *configuration.Config, token *string) bool {
 	headers := make(map[string]string)
 	headers["Content-Type"] = "application/json"
 
-	deviceJson, _ := json.Marshal(*device)
-
-	resp, err := executeRequest(config.DeviceAvailabilityUrl, "GET", bytes.NewBuffer(deviceJson), headers)
+	deviceJson, err := json.Marshal(*device)
 	common.Check(err)
 
-	if resp.StatusCode == 200 {
+	resp, err := executeRequest(config.DeviceAvailabilityUrl, "GET", bytes.NewBuffer(deviceJson),
+		GetAuthorizationHeaders(nil, token))
+	common.Check(err)
+
+	if resp.StatusCode == http.StatusOK {
+		return true
+	}
+
+	return false
+}
+
+func CreateUserDevice(deviceId *string, deviceName *string, deviceSerial *string,
+	config *configuration.Config, token *string) bool {
+	headers := make(map[string]string)
+	headers["Content-Type"] = "application/json"
+
+	userDevice := map[string]interface{}{"DeviceId": *deviceId, "DeviceName": *deviceName, "DeviceSerial": *deviceSerial}
+
+	userDeviceJson, err := json.Marshal(userDevice)
+	common.Check(err)
+
+	resp, err := executeRequest(config.CreateUserDeviceUrl, "POST", bytes.NewBuffer(userDeviceJson),
+		GetAuthorizationHeaders(headers, token))
+	common.Check(err)
+
+	if resp.StatusCode == http.StatusCreated {
 		return true
 	}
 

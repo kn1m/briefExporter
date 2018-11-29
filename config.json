@@ -1,9 +1,11 @@
 {
-  "notes_retrieve_url" : "http://localhost/api/notes",
-  "notes_send_url" : "http://localhost/api/notes",
-  "library_check_url" : "http://localhost/api/lib",
-  "library_sync_url": "http://localhost/api/libsync",
-  "token_retrieve_url" : "http://localhost/api/token",
+  "notes_retrieve_url" : "http://localhost:5000/api/notes",
+  "notes_send_url" : "http://localhost:5000/api/notes",
+  "library_check_url" : "http://localhost:5000/api/lib",
+  "library_sync_url": "http://localhost:5000/api/libsync",
+  "token_retrieve_url" : "http://localhost:5000/api/token",
+  "device_availability_url": "http://localhost:5000/api/device/user",
+  "create_user_device_url" : "",
   "scan_folder": "/home/pk/brief",
   "scan_mount_path_script": "/home/pk/projects/go/src/briefExporter/scripts/devices.sh"
 }

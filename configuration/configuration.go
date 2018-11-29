@@ -14,6 +14,7 @@ type Config struct {
 	ScanFolder            string `json:"scan_folder"`
 	ScanMountPathScript   string `json:"scan_mount_path_script"`
 	DeviceAvailabilityUrl string `json:"device_availability_url"`
+	CreateUserDeviceUrl string `json:"create_user_device_url"`
 	TokenRetrieveUrl      string `json:"token_retrieve_url"`
 }
 
