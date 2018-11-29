@@ -10,8 +10,9 @@ import (
 const authorizationHeaderName = "Authorization"
 
 type User struct {
-	Email    string `json:"email"`
-	Password string `json:"password"`
+	Email     string `json:"email"`
+	Password  string `json:"password"`
+	GrantType string `json:"grant_type"`
 }
 
 type TokenResponse struct {
@@ -33,7 +34,7 @@ func GetToken(configuration *configuration.Config, user *User) (*string, error) 
 	return &tokenResponse.Token, err
 }
 
-func GetAuthorizationHeaders(initialHeaders map[string]string, token *string) map[string]string {
+func getAuthorizationHeaders(initialHeaders map[string]string, token *string) map[string]string {
 	if initialHeaders != nil {
 		initialHeaders[authorizationHeaderName] = *token
 
