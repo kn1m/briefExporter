@@ -7,5 +7,6 @@
   "device_availability_url": "http://localhost:5000/api/device/user",
   "create_user_device_url" : "",
   "scan_folder": "/home/pk/brief",
-  "scan_mount_path_script": "/home/pk/projects/go/src/briefExporter/scripts/devices.sh"
+  "scan_mount_path_script": "/home/pk/projects/go/src/briefExporter/scripts/devices.sh",
+  "path_to_local_db" : ""
 }

@@ -16,6 +16,7 @@ type Config struct {
 	DeviceAvailabilityUrl string `json:"device_availability_url"`
 	CreateUserDeviceUrl   string `json:"create_user_device_url"`
 	TokenRetrieveUrl      string `json:"token_retrieve_url"`
+	PathToLocalDb         string `json:"path_to_local_db"`
 }
 
 func GetConfig(path string) (*Config, error) {

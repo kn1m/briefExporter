@@ -7,9 +7,9 @@ import (
 )
 
 type Device struct {
-	Manufacturer string
-	Model        string
-	Classifier   string
+	Manufacturer string `json:"Manufacturer"`
+	Model        string `json:"Model"`
+	Classifier   string `json:"Classifier"`
 }
 
 func GetDeviceToConnect(config *configuration.Config, reader *bufio.Reader) *Device {
