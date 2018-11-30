@@ -20,7 +20,7 @@ import (
 func main() {
 	runtime.GOMAXPROCS(2)
 
-	reader, _, _ := ui.GetUserCredentials()
+	reader, user := ui.GetUserCredentials()
 
 	var dataPath string
 	flag.StringVar(&dataPath, "data_path", "", "path to data file")
@@ -52,7 +52,10 @@ func main() {
 
 	device := ui.GetDeviceToConnect(config, reader)
 
-	if net.CheckDeviceAvailability(device, config) {
+	token, err := net.GetToken(config, user)
+	common.Check(err)
+
+	if net.CheckDeviceAvailability(device, config, token) {
 		log.Fatalln("configPath and dataPath should been provided!")
 		os.Exit(1)
 	}

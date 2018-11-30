@@ -3,6 +3,7 @@ package net
 import (
 	"briefExporter/common"
 	"briefExporter/configuration"
+	"briefExporter/ui"
 	"encoding/json"
 	"io/ioutil"
 )
@@ -19,7 +20,7 @@ type TokenResponse struct {
 	Token string `json:"token"`
 }
 
-func GetToken(configuration *configuration.Config, user *User) (*string, error) {
+func GetToken(configuration *configuration.Config, user *ui.User) (*string, error) {
 
 	resp, err := executeRequest(configuration.TokenRetrieveUrl, "POST", nil, nil)
 	common.Check(err)
