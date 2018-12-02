@@ -8,5 +8,5 @@
   "create_user_device_url" : "",
   "scan_folder": "/home/pk/brief",
   "scan_mount_path_script": "/home/pk/projects/go/src/briefExporter/scripts/devices.sh",
-  "path_to_local_db" : ""
+  "path_to_local_db" : "~/.briefExporter/storage.db"
 }
